@@ -1,3 +1,84 @@
-.header {
-  
+#header{
+  width: 100%;
+  position: fixed;
+  z-index: 1000;
+
+  .main-logo{
+    display: inline-block;
+    height: 130px;
+    opacity: 0.3;
+    margin: 30px 0 0 50px;
+
+    @include breakpoint(small){
+      opacity: 1;
+    }
+
+    svg{
+      height: 100%;
+    }
+
+    path{
+      fill: none;
+      stroke-opacity: 0;
+      stroke-width: 30px;
+      stroke-linecap: square;
+      stroke-linejoin: bevel;
+      stroke-dasharray: 100;
+    }
+  }
+
+  .main-nav-holder{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 400px;
+    height: 400px;
+  }
+
+  .main-menu{
+    position: relative;
+
+    li{
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      opacity: 0;
+      list-style-type: none;
+
+      border: 3px solid lightblue;
+      border-radius: 50%;
+      text-align: center;
+      transition: 0.5s border-color;
+
+      a{
+        display: inline-table;
+        text-decoration: none;
+        width: 100%;
+        height: 100%;
+      }
+
+      &:hover{
+        border-color: #158fef;
+
+        i{
+          color: #158fef;
+        }
+      }
+    }
+
+    i{
+      font-size: 30px;
+      display: table-cell;
+      vertical-align: middle;
+      color: lightblue;
+      transition: 0.5s color;
+    }
+  }
+
+  .hamburglar{
+    top: 20px;
+    right: 30px;
+    cursor: pointer;
+    z-index: 200;
+  }
 }

@@ -1,13 +1,20 @@
-//@import "foundation/settings/settings";
-//@import "foundation/foundation";
+@import "foundation/settings/settings";
+@import "foundation/foundation";
 
 @import "libs/variables";
 @import "libs/mixins";
 @import "libs/fonts";
+@import "libs/font-awesome/font-awesome";
 
+@import "components/global";
 @import "components/header";
 @import "components/footer";
+@import "components/hamburger";
+@import "components/main-section";
 
 @import "pages/global";
 @import "pages/home";
 
+body{
+  margin: 0;
+}

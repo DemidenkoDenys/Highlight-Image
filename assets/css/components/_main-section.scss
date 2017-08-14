@@ -1,0 +1,24 @@
+.main-section{
+
+  #bg-wrapper{
+    position: relative;
+    width: 100%;
+    height: 100vh;
+
+    .map{
+      position: absolute;
+      //top: 0;
+      //left: 0;
+      z-index: 10;
+    }
+
+    .canvas-container,
+    .konvajs-content{
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 20;
+      width: 100%;
+    }
+  }
+}

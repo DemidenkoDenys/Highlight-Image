@@ -9,7 +9,7 @@ switch (global.vars.page) {
 		break;
 	default:
 		init = () => {
-			console.log('default init');
+
 		};
 }
 

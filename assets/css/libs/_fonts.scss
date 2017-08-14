@@ -1,9 +1,17 @@
-// Custom Font
-$font-name: "font";
-@font-face {
-    font-family: 'fontello';
-    src:         url('#{$path-fonts}/#{$font-name}.eot');
-    src:         url('#{$path-fonts}/#{$font-name}.eot#iefix') format('embedded-opentype'), url('#{$path-fonts}/#{$font-name}.woff') format('woff'), url('#{$path-fonts}/#{$font-name}.ttf') format('truetype'), url('#{$path-fonts}/#{$font-name}.svg#fontello') format('svg');
-    font-weight: normal;
-    font-style:  normal;
+$path-fonts: "../fonts";
+
+$font-names: (
+    "foundation-icons",
+    "FontAwesome",
+    "fontello"
+);
+
+@each $path in $font-names {
+    @font-face{
+        font-family: $path;
+        src: url('#{$path-fonts}/#{$path}/#{$path}.eot');
+        src: url('#{$path-fonts}/#{$path}/#{$path}.eot#iefix') format('embedded-opentype'), url('#{$path-fonts}/#{$path}/#{$path}.woff') format('woff'), url('#{$path-fonts}/#{$path}/#{$path}.ttf') format('truetype'), url('#{$path-fonts}/#{$path}/#{$path}.svg#fontello') format('svg');
+        font-weight: normal;
+        font-style:  normal;
+    }
 }

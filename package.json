@@ -5,7 +5,18 @@
   "author": "Bigdrop <bigdrop@bigdropinc.com>",
   "private": true,
   "dependencies": {
-    "jquery": "latest"
+    "anime": "^0.1.2",
+    "animejs": "^2.0.2",
+    "font-awesome": "^4.7.0",
+    "fontawesome": "^4.7.2",
+    "foundation-icon-fonts": "^0.1.1",
+    "foundation-sites": "^6.4.1",
+    "gsap": "^1.20.2",
+    "image-map-resizer": "^1.0.3",
+    "jquery": "latest",
+    "jquery-imagemapster": "^1.2.10",
+    "maphilight": "^1.3.1",
+    "mojs": "^0.2.0"
   },
   "devDependencies": {
     "babel-plugin-transform-inline-environment-variables": "latest",
