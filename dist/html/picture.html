@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <link rel="stylesheet" href="../css/style.css"/>
+        <title>Bigdrop Kit</title>
+    </head>
+
+    <body>
+
+        <picture>
+            <!--[if IE 9]><video style="display: none;"><![endif]-->
+            <source srcset="../images/small.jpg" media="(max-width: 768px)" />
+            <source srcset="../images/medium.jpg" media="(max-width: 1280px)" />
+            <source srcset="../images/big.jpg" media="(max-width: 1900px)" />
+            <!--[if IE 9]></video><![endif]-->
+            <img srcset="../images/main-bg.jpg" alt="My default image">
+        </picture>
+
+        <script>var vars = {page: 'picture_page'};</script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/1.7.17/fabric.js"></script>-->
+        <script src="https://cdn.rawgit.com/konvajs/konva/1.6.5/konva.min.js"></script>
+        <script src="../js/global.js"></script>
+
+    </body>
+</html>

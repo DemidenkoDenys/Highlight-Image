@@ -16,7 +16,11 @@
     "jquery": "latest",
     "jquery-imagemapster": "^1.2.10",
     "maphilight": "^1.3.1",
-    "mojs": "^0.2.0"
+    "masonjs": "^0.1.0",
+    "mojs": "^0.2.0",
+    "object-fit-images": "^3.2.3",
+    "picturefill": "^3.0.2",
+    "victor": "^1.1.0"
   },
   "devDependencies": {
     "babel-plugin-transform-inline-environment-variables": "latest",

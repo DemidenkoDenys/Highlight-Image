@@ -1,4 +1,9 @@
 import 'image-map-resizer';
+import anime from 'animejs';
+import Victor from 'victor';
+import picturefill from 'picturefill';
+import '../libs/object-fit';
+import objectFitImages from 'object-fit-images';
 
 export default {
     areas: [],
@@ -9,23 +14,213 @@ export default {
     hoverAnimation: '',
     highlightAnimation: '',
     globalOpacity: 0,
+    // context: document.getElementById("flash").getContext("2d"),
 
     init() {
-        $('map').imageMapResize();
+        if ($('map'))
+            $('map').imageMapResize();
 
-        this.initStage();
-        this.initLayer();
-        this.fillAreas();
-        this.initBackground();
-        this.initHoverAnimation();
-        this.initHighlightAnimation();
-        this.initHandlers();
-        this.drawFigures();
+        if (vars.page === 'home_page') {
+            this.initStage();
+            this.initLayer();
+            this.fillAreas();
+            this.initBackground();
+            this.initHoverAnimation();
+            this.initHighlightAnimation();
+            this.initHandlers();
+            this.drawFigures();
+            this.stage.add(this.layer);
+        }
 
-        this.stage.add(this.layer);
+        this.flashlight();
+
+        objectFitImages('.box img');
+        objectFitImages('.grid-container li img');
+
+        picturefill();
+
+        // let fromX = 400,
+        //     fromY = 400,
+        //     toX = 600,
+        //     toY = 600;
+        //
+        // var v1 = new Victor(300, 300);
+        // var v2 = new Victor(500, 400);
+        //
+        // var vc = new Victor((v2.x + v1.x) / 2, (v2.y + v1.y) / 2);
+        //
+        // this.drawPoint(v1);
+        // this.drawPoint(v2);
+        //
+        // var v3 = new Victor.fromObject({ x: (vc.x-v1.x) * Math.cos(60)-(vc.y-v1.y) * Math.sin(60)+v1.x,
+        //                                  y: (vc.x-v1.x) * Math.sin(60)+(vc.y-v1.y) * Math.cos(60)+v1.y
+        // });
+        //
+        // let x2 = v2.x;
+        // let x1 = v1.x;
+        // let y2 = v2.y;
+        // let y1 = v1.y;
+        //
+        // this.drawPoint(v3, 'blue');
+
+    },
+
+    flashlight(){
+        var dot1 = new Victor(200, 200);
+        var dot2 = new Victor(800, 400);
+
+        function getPerpendicular(x2, y2, x1, y1, l, dir){
+            var angle = Math.atan((y2 - y1) / (x2 - x1)) * 180 / Math.PI;
+            return {
+                x: (x1 + x2) / 2 + dir * (l * Math.sin(angle * Math.PI / 180)),
+                y: (y1 + y2) / 2 + dir * -1 * (l * Math.cos(angle * Math.PI / 180))
+            }
+        };
+
+        var lines = [dot1, dot2];
+        var points = [];
+        var path = '';
+
+        function divideLine(l1, l2){
+            return getPerpendicular(l1.x, l1.y, l2.x, l2.y,
+                random(length(l1, l2) / 10,
+                    length(l1, l2)),
+                random(-1, 1));
+        };
+
+        function length(d1, d2){
+            return Math.sqrt((d2.x - d1.x) * (d2.x - d1.x) + (d2.y - d1.y) * (d2.y - d1.y));
+        }
+
+        for(var l = 0; l < 7; l++){
+            for(var i = lines.length - 2; i >= 0; i--) {
+                lines.splice(i + 1, 0, divideLine(lines[i], lines[i + 1]));
+            }
+        }
+
+        for (var i = 0; i < lines.length; i++) {
+            points.push(lines[i].x);
+            points.push(lines[i].y);
+        };
+
+        console.log(points);
+
+        for (var i = 0; i < points.length; i++) {
+            if(i === 0)
+                path = path + 'M' + Math.round(points[i]) + ' ' + Math.round(points[i + 1]) + ' ';
+            else if(!(i % 2))
+                path = path + 'L' + Math.round(points[i]) + ' ' + Math.round(points[i + 1]) + ' ';
+        }
+
+        $('#svg path').attr('d', path);
+
+        function random(min, max) {
+            return Math.random() * (max - min) + min;
+        }
+    },
+
+    // drawLine(){
+    //
+    //     var canvas = document.getElementById("flash");
+    //     var context = canvas.getContext("2d");
+    //
+    //     let prevPoint = { top: 0, left: 0 };
+    //     let counter = 1;
+    //     let looper = 0;
+    //
+    //     context.fillStyle = 'rgba(1,89,116, 0.2)';
+    //     context.fillRect(0, 0, 1000, 800);
+    //
+    //     for(let i = 1; i < 500; i++){
+    //         (() => {
+    //             setTimeout(() => {
+    //                 let offset = Math.abs(Math.sin(i++ * Math.PI / 150) * 10).toFixed(1) * 15;
+    //
+    //                 console.log();
+    //
+    //                 let x = this.random(5);
+    //                 let y = this.random(10);
+    //
+    //                 let color = `rgb(${this.random(256)}, ${this.random(256)}, ${this.random(256)})`;
+    //                     color = '#66DCFF';
+    //
+    //                 context.beginPath();
+    //
+    //                 context.moveTo(prevPoint.top, prevPoint.left);
+    //                 context.lineTo(prevPoint.top + x, y + offset);
+    //
+    //                 prevPoint.top += x;
+    //                 prevPoint.left = y + offset;
+    //
+    //                 context.strokeStyle = '#fff';
+    //                 // context.shadowColor = color;
+    //                 context.lineWidth = 2;
+    //                 // context.shadowBlur = 20;
+    //
+    //                 for(let l = 0; l < 7; l++){
+    //                     context.stroke();
+    //                 }
+    //
+    //                 // if(i === 19)
+    //                     // context.clearRect(0, 0, 1000, 800);
+    //
+    //             }, i * 20);
+    //         })();
+    //     }
+    //
+    // },
+
+    lengthBetweenDots(coord1, coord2){
+        let x = coord2.x - coord1.x,
+            y = coord2.y - coord1.y;
+        return Math.pow((x * x + y * y), 0.5);
+    },
+
+    drawPoint(coords, color = 'red'){
+
+        this.context.beginPath();
+        this.context.moveTo(coords.x, coords.y);
+        this.context.arc(coords.x, coords.y, 3, 0, 2 * Math.PI, false);
+        this.context.fillStyle = color;
+        this.context.fill();
+    },
+
+    drawLine(coords1, coords2){
+
+        this.context.beginPath();
+        this.context.moveTo(coords1.x, coords1.y);
+        this.context.lineTo(coords2.x, coords2.y);
+        this.context.strokeWidth = 1;
+        this.context.strokeStyle = 'red';
+        this.context.stroke();
+    },
+
+    drawLightning(){
+
+        this.context.fillStyle = 'rgba(110,89,116, 0.2)';
+        this.context.fillRect(0, 0, 1000, 800);
+
+        this.context.beginPath();
+
+        this.context.moveTo(0, 0);
+        this.context.lineTo(400, 400);
+
+        this.context.strokeStyle = 'white';
+        this.context.shadowColor = 'lightblue';
+        this.context.lineWidth = 2;
+        this.context.shadowBlur = 20;
+
+        for(let l = 0; l < 7; l++){
+            this.context.stroke();
+        }
+    },
+
+    random(num){
+        return Math.floor(Math.random() * (num))
     },
 
     initStage(){
+
         this.stage = new Konva.Stage({
             container: 'canvas',
             width: window.innerWidth,
@@ -76,8 +271,6 @@ export default {
     },
 
     initHoverAnimation(){
-        var flag = false;
-
         this.hoverAnimation = new Konva.Animation(() => {
 
             if(this.hoverOnFigure && parseFloat(this.globalOpacity).toFixed(2) <= 0.8)

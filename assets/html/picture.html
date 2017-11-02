@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    //= templates/head
+
+    <body>
+
+        <picture>
+            <!--[if IE 9]><video style="display: none;"><![endif]-->
+            <source srcset="../images/small.jpg" media="(max-width: 768px)" />
+            <source srcset="../images/medium.jpg" media="(max-width: 1280px)" />
+            <source srcset="../images/big.jpg" media="(max-width: 1900px)" />
+            <!--[if IE 9]></video><![endif]-->
+            <img srcset="../images/main-bg.jpg" alt="My default image">
+        </picture>
+
+        <script>var vars = {page: 'picture_page'};</script>
+        //= templates/scripts
+
+    </body>
+</html>

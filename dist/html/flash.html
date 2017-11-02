@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <link rel="stylesheet" href="../css/style.css"/>
+        <title>Bigdrop Kit</title>
+    </head>
+
+    <body>
+
+        <!--<canvas id="flash" width="1000" height="800"></canvas>-->
+
+        <svg id="svg">
+            <defs>
+                <filter id="f1">
+                    <feGaussianBlur in="SourceGraphic" stdDeviation="5" />
+                    <feColorMatrix in="a1" type="saturate" values="5" />
+
+                    <fecomponenttransfer>
+                        <feFuncR type="linear" slope="0.3" />
+                        <feFuncG type="linear" slope="0.3" />
+                        <feFuncB type="linear" slope="1" />
+                        <feFuncA type="identity" />
+                    </fecomponenttransfer>
+                </filter>
+            </defs>
+            <path d=""></path>
+        </svg>
+
+
+        <script>var vars = { page: 'flash_page' };</script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/1.7.17/fabric.js"></script>-->
+        <script src="https://cdn.rawgit.com/konvajs/konva/1.6.5/konva.min.js"></script>
+        <script src="../js/global.js"></script>
+
+    </body>
+
+</html>
